@@ -8,7 +8,7 @@
 include_once ('autoload.php');
 class Shipment
 {
-    private static $awb_table_name="awb_meta";
+    private $awb_table_name="awb_meta";
     private $events_table_name="events";
     public function __construct($awb)
     {
@@ -73,6 +73,6 @@ class Shipment
         (new DB())->changedb($this->awb_table_name,array('completed'=>time(),'completed_by'=>(new Sessions())->getID(),'status'=>'1'),array('awb'=>$this->awb));
     }
     static function getShipments($id){
-        return (new DB())->askdb_all(Shipment::$awb_table_name,array('created_by'=>$id));
+        return (new DB())->askdb_all("awb_meta",array('created_by'=>$id));
     }
 }
