@@ -1,10 +1,11 @@
 <?php
-require_once('plugins/session.php');
-require_once('config.php');
-if (chk_tok()){header('Location: track.php');}
-if (isset($_POST['id'])&&isset($_POST['password'])){
-    if (gen_tok(strtoupper($_POST['id']),$_POST['password'])) {header('Location: track.php');}
-    else header('Location: '.DOMAIN.PATH.'/login.php?msg=1');}
+require_once(dirname(__FILE__).'/includes/autoload.php');
+$session=new Sessions();
+if ($session->chk_tok()){header('Location: index.php');}
+else if (isset($_POST['id'])&&isset($_POST['password'])){
+    if ($session->gen_tok(strtoupper($_POST['id']),$_POST['password'])) {header('Location: index.php');}
+    else header('Location: '.DOMAIN.PATH.'/login.php?msg=1');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

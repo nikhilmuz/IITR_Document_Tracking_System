@@ -3,10 +3,10 @@ require_once(dirname(__FILE__).'/theme/theme.php');
 include_once ('includes/autoload.php');
 get_header();
 $awbstatus=false;
-if(isset($_POST['origin'])&&$_POST['origin']!=""&&isset($_POST['destination'])&&$_POST['destination']!=""&&isset($_POST['expected'])&&$_POST['expected']!=""){$awbstatus=true;}
+if(isset($_POST['origin'])&&$_POST['origin']!=""&&$_POST['docid']&&$_POST['docid']!=""&&isset($_POST['destination'])&&$_POST['destination']!=""&&isset($_POST['expected'])&&$_POST['expected']!=""){$awbstatus=true;}
 if($awbstatus) {
     $awb = new AWB(time());
-    $awb->createAWB($_POST['origin'], $_POST['destination'], $_POST['expected']);
+    $awb->createAWB($_POST['docid'],$_POST['origin'], $_POST['destination'], $_POST['expected'],$_POST['remarks']);
     $awbstatus = $awb->isValid;
 }
 ?>
@@ -125,6 +125,9 @@ if($awbstatus){
                 Shipment No.
             </div>
             <div class="cell">
+                Document ID.
+            </div>
+            <div class="cell">
                 Created On
             </div>
             <div class="cell">
@@ -135,6 +138,9 @@ if($awbstatus){
             </div>
             <div class="cell">
                 Destination
+            </div>
+            <div class="cell">
+                Remarks
             </div>
             <div class="cell">
                 Expected Delivery
@@ -154,6 +160,9 @@ if($awbstatus){
             <div class="cell" data-title="Shipment No.">
                 <?php echo $awb->awb; ?>
             </div>
+            <div class="cell" data-title="Document ID">
+                <?php echo $awb->docid; ?>
+            </div>
             <div class="cell" data-title="Created On">
                 <?php echo Functions::get_date_from_stamp($awb->created); ?>
             </div>
@@ -165,6 +174,9 @@ if($awbstatus){
             </div>
             <div class="cell" data-title="Destination">
                 <?php echo $awb->destination; ?>
+            </div>
+            <div class="cell" data-title="Destination">
+                <?php echo $awb->remarks; ?>
             </div>
             <div class="cell" data-title="Expected Delivery">
                 <?php if($awb->status==0){echo Functions::get_date_from_stamp($awb->completed);} ?>
@@ -236,7 +248,7 @@ else {
     <div style="padding-top: 10%" class="row">
         <div class="col-sm-4"></div>
         <div class="col-sm-4">
-            <form method="post" action="#" id="create" onsubmit="if ($('#origin').val()==''||$('#destination').val()==''||$('#expected').val()==''){generate_message('msgdiv','info','Please Fill Details First!','msgid','','clear'); event.preventDefault();}">
+            <form method="post" action="#" id="create" onsubmit="if ($('#origin').val()==''||$('#destination').val()==''||$('#expected').val()==''||$('#docid').val()==''){generate_message('msgdiv','info','Please Fill Details First!','msgid','','clear'); event.preventDefault();}">
                 <div class="input-group">
                     <input class="form-control" name="origin" id="origin" placeholder="Origin" type="text">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-plane"></i></span>
@@ -248,11 +260,21 @@ else {
                 </div>
                 <br>
                 <div class="input-group">
+                    <input class="form-control" name="docid" id="docid" placeholder="Document ID" type="text">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-paperclip"></i></span>
+                </div>
+                <br>
+                <div class="input-group">
                     <input class="form-control" name="expected" id="expected" placeholder="Expected Days" type="number">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
                 </div>
                 <br>
-                <p align="center"><button id="create" onClick="if ($('#origin').val()==''||$('#destination').val()==''||$('#expected').val()==''){this.disabled=false;} else {this.disabled=true;} $('#create').submit();" class="btn btn-info">Create Shipment</button></p>
+                <div class="input-group">
+                    <input class="form-control" name="remarks" id="remarks" placeholder="Remarks" type="text">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
+                </div>
+                <br>
+                <p align="center"><button id="create" onClick="if ($('#origin').val()==''||$('#destination').val()==''||$('#expected').val()==''||$('#docid').val()==''){this.disabled=false;} else {this.disabled=true;} $('#create').submit();" class="btn btn-info">Create Shipment</button></p>
             </form>
         </div>
     </div>

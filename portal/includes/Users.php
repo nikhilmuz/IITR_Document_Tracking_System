@@ -5,10 +5,12 @@
  * Date: 25/8/18
  * Time: 6:43 AM
  */
+define("USER_TABLE_NAME","users");
 class Users
 {
     public $isValid=false;
-    private $user_table_name="users";
+    public $isAdmin=false;
+    private $user_table_name=USER_TABLE_NAME;
     private $pwd;
     public function __construct($id)
     {
@@ -38,7 +40,7 @@ class Users
             $this->ph=$result['ph'];
             $this->email=$result['email'];
             $this->office=$result['officeid'];
-            $this->permission=$result['permission'];
+            if($result['permission']=="ADMIN"){$this->isAdmin=true;}
             return true;
         }else{
             return false;
@@ -49,9 +51,7 @@ class Users
     {
         ($this->connect)->close();
     }
-
-    function getEvents(){
-        $query = mysqli_query($this->connect,"SELECT * FROM ".$this->events_table_name." WHERE awb = '".$this->awb."' ORDER BY timestamp DESC") or die(mysql_error($this->connect));
-        return mysqli_fetch_all($query,MYSQLI_ASSOC);
+    static function getUsers($array){
+        return (new DB())->askdb_all(USER_TABLE_NAME,$array);
     }
 }

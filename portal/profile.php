@@ -1,7 +1,10 @@
 <?php
+require_once( dirname( __FILE__ ) . '/includes/autoload.php' );
 require_once( dirname( __FILE__ ) . '/theme/theme.php' );
-require_once( dirname( __FILE__ ) . '/config.php' );
-get_header();
+require_once( dirname( __FILE__ ) . '/admin/theme/theme.php' );
+$isAdmin=(new Users((new Sessions())->getID()))->isAdmin;
+if($isAdmin) get_admin_header();
+else get_header();
 require_once( 'plugins/db.php' );
 $tid = $_COOKIE[ "tid" ];
 $eid;
@@ -136,5 +139,6 @@ function ajax_callback1(text,status,state){
 	}
 </script>
 <?php
-get_footer();
+if ($isAdmin) get_admin_footer();
+else get_footer();
 ?>

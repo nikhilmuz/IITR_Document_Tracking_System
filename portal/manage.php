@@ -36,7 +36,7 @@ get_header();
         .wrapper {
             margin: 0 auto;
             padding: 40px;
-            max-width: 800px;
+            width: 100%;
         }
 
         .table {
@@ -116,6 +116,9 @@ get_header();
                 Shipment No.
             </div>
             <div class="cell">
+                Document ID
+            </div>
+            <div class="cell">
                 Created On
             </div>
             <div class="cell">
@@ -126,6 +129,9 @@ get_header();
             </div>
             <div class="cell">
                 Destination
+            </div>
+            <div class="cell">
+                Remarks
             </div>
             <div class="cell">
                 Expected Delivery
@@ -147,6 +153,9 @@ get_header();
             <div class="cell" data-title="Shipment No.">
                 <?php echo $shipment['awb']; ?>
             </div>
+            <div class="cell" data-title="Document ID">
+                <?php echo $shipment['docid']; ?>
+            </div>
             <div class="cell" data-title="Created On">
                 <?php echo Functions::get_date_from_stamp($shipment['created']); ?>
             </div>
@@ -158,6 +167,9 @@ get_header();
             </div>
             <div class="cell" data-title="Destination">
                 <?php echo $shipment['destination']; ?>
+            </div>
+            <div class="cell" data-title="Remarks">
+                <?php echo $shipment['remarks']; ?>
             </div>
             <div class="cell" data-title="Expected Delivery">
                 <?php if($shipment['status']==0){echo Functions::get_date_from_stamp($shipment['completed']);} ?>

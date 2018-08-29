@@ -44,6 +44,8 @@ class AWB
             $this->origin=$result['origin'];
             $this->destination=$result['destination'];
             $this->status=$result['status'];
+            $this->docid=$result['docid'];
+            $this->remarks=$result['remarks'];
             return true;
         }else{
             return false;
@@ -53,7 +55,7 @@ class AWB
         $query = mysqli_query($this->connect,"SELECT * FROM ".$this->events_table_name." WHERE awb = '".$this->awb."' ORDER BY timestamp DESC") or die(mysql_error($this->connect));
         return mysqli_fetch_all($query,MYSQLI_ASSOC);
     }
-    function createAWB($origin,$destination,$expected){
+    function createAWB($docid,$origin,$destination,$expected,$remarks){
         (new DB())->telldb($this->meta_table_name,
             array(
                 'awb',
@@ -62,7 +64,9 @@ class AWB
                 'completed',
                 'origin',
                 'destination',
-                'status'
+                'status',
+                'docid',
+                'remarks'
             ),
         array(
             $this->awb,
@@ -71,7 +75,9 @@ class AWB
             time()+($expected*24*3600),
             $origin,
             $destination,
-            0
+            0,
+            $docid,
+            $remarks
             )
         );
         $this->isValid=$this->isValid();

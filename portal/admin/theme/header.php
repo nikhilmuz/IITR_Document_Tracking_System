@@ -1,7 +1,7 @@
 <?php
-require_once(dirname(dirname(__FILE__)).'/includes/autoload.php');
+require_once(dirname(dirname(dirname(__FILE__))).'/includes/autoload.php');
 if (!(new Sessions())->chk_tok()){
-header('Location: '.DOMAIN.PATH.'/login.php?msg=3');
+header('Location: '.DOMAIN.PATH.ADMIN.'/login.php?msg=3');
 }
 ?>
 <!DOCTYPE html>
@@ -25,7 +25,7 @@ header('Location: '.DOMAIN.PATH.'/login.php?msg=3');
 		<nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="<?php echo DOMAIN.PATH; ?>/track.php"><?php echo TITLE; ?></a>
+      <a class="navbar-brand" href="<?php echo DOMAIN.PATH; ?>/admin/dashboard.php"><?php echo TITLE; ?></a>
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#Navbar">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -34,10 +34,10 @@ header('Location: '.DOMAIN.PATH.'/login.php?msg=3');
     </div>
     <div class="collapse navbar-collapse" id="Navbar">
       <ul class="nav navbar-nav">
-        <li id="tab1"><a href="<?php echo DOMAIN.PATH; ?>/track.php">Track</a></li>
-        <li id="tab2"><a href="<?php echo DOMAIN.PATH; ?>/update.php">Update</a></li>
-        <li id="tab3"><a href="<?php echo DOMAIN.PATH; ?>/manage.php">Manage</a></li>
-        <li id="tab4"><a href="<?php echo DOMAIN.PATH; ?>/create.php">Create</a></li>
+        <li id="tab1"><a href="<?php echo DOMAIN.PATH.ADMIN; ?>/dashboard.php">Dashboard</a></li>
+        <li id="tab2"><a href="<?php echo DOMAIN.PATH.ADMIN; ?>/reset_password.php">Reset Password</a></li>
+        <li id="tab3"><a href="<?php echo DOMAIN.PATH.ADMIN; ?>/create_user.php">Create User</a></li>
+        <li id="tab4"><a href="<?php echo DOMAIN.PATH.ADMIN; ?>/delete_user.php">Delete User</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">

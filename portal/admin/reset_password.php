@@ -1,7 +1,7 @@
 <?php
 require_once(dirname(__FILE__).'/theme/theme.php');
-include_once ('includes/autoload.php');
-get_header();
+include_once ('../includes/autoload.php');
+get_admin_header();
 $awbstatus=true;
 if(isset($_GET['awb'])&&$_GET['awb']!="") {
     $awb = new AWB($_GET['awb']);
@@ -9,8 +9,8 @@ if(isset($_GET['awb'])&&$_GET['awb']!="") {
 }
 ?>
     <script>
-        $("#tab1").addClass("active");
-        $("title").html("Track Shipment | <?php echo TITLE; ?>");
+        $("#tab2").addClass("active");
+        $("title").html("Reset Password | <?php echo TITLE; ?>");
     </script>
     <style>
         input[type=number]::-webkit-inner-spin-button,
@@ -123,9 +123,6 @@ if(isset($_GET['awb'])&&$_GET['awb']!=''&&$awbstatus){
                 Shipment No.
             </div>
             <div class="cell">
-                Document ID
-            </div>
-            <div class="cell">
                 Created On
             </div>
             <div class="cell">
@@ -136,9 +133,6 @@ if(isset($_GET['awb'])&&$_GET['awb']!=''&&$awbstatus){
             </div>
             <div class="cell">
                 Destination
-            </div>
-            <div class="cell">
-                Remarks
             </div>
             <div class="cell">
                 Expected Delivery
@@ -158,9 +152,6 @@ if(isset($_GET['awb'])&&$_GET['awb']!=''&&$awbstatus){
             <div class="cell" data-title="Shipment No.">
                 <?php echo $awb->awb; ?>
             </div>
-            <div class="cell" data-title="Shipment No.">
-                <?php echo $awb->docid; ?>
-            </div>
             <div class="cell" data-title="Created On">
                 <?php echo Functions::get_date_from_stamp($awb->created); ?>
             </div>
@@ -172,9 +163,6 @@ if(isset($_GET['awb'])&&$_GET['awb']!=''&&$awbstatus){
             </div>
             <div class="cell" data-title="Destination">
                 <?php echo $awb->destination; ?>
-            </div>
-            <div class="cell" data-title="Destination">
-                <?php echo $awb->remarks; ?>
             </div>
             <div class="cell" data-title="Expected Delivery">
                 <?php if($awb->status==0){echo Functions::get_date_from_stamp($awb->completed);} ?>
@@ -264,5 +252,5 @@ else {
     </script>
     <?php
 }
-get_footer();
+get_admin_footer();
 ?>

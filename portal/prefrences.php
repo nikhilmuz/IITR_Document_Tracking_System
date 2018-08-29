@@ -1,7 +1,10 @@
 <?php
 require_once(dirname(__FILE__).'/theme/theme.php');
+require_once(dirname(__FILE__).'/admin/theme/theme.php');
 require_once(dirname(__FILE__).'/plugins/db.php');
-get_header();
+$isAdmin=(new Users((new Sessions())->getID()))->isAdmin;
+if($isAdmin) get_admin_header();
+else get_header();
 ?>
 <script>
 	$( "title" ).html( "Prefrences | <?php echo TITLE; ?>" );
@@ -109,5 +112,6 @@ function ajax_callback3(text,status,state){
 		};
 </script>
 <?php
-get_footer();
+if ($isAdmin) get_admin_footer();
+else get_footer();
 ?>
