@@ -21,9 +21,6 @@ if(isset($_GET['id'])&&$_GET['id']!="") {
             margin: 0;
         }
     </style>
-<?php
-if(isset($_GET['id'])&&$_GET['id']!=''&&$userstatus){
-    ?>
     <style>
         body {
     font-family: "Helvetica Neue", Helvetica, Arial;
@@ -44,7 +41,7 @@ if(isset($_GET['id'])&&$_GET['id']!=''&&$userstatus){
     .wrapper {
     margin: 0 auto;
     padding: 40px;
-    max-width: 800px;
+        max-width: 800px;
     }
 
     .table {
@@ -116,8 +113,10 @@ if(isset($_GET['id'])&&$_GET['id']!=''&&$userstatus){
     }
     }
 </style>
+<?php
+if(isset($_GET['id'])&&$_GET['id']!=''&&$userstatus){
+    ?>
     <div class="table">
-
         <div class="row header">
             <div class="cell">
                 User ID
@@ -143,25 +142,25 @@ if(isset($_GET['id'])&&$_GET['id']!=''&&$userstatus){
         </div>
 
         <div class="row">
-            <div class="cell" data-title="Shipment No.">
+            <div class="cell" data-title="User ID">
                 <?php echo $user->enrlid; ?>
             </div>
-            <div class="cell" data-title="Created On">
+            <div class="cell" data-title="Username">
                 <?php echo $user->id; ?>
             </div>
-            <div class="cell" data-title="Created By">
+            <div class="cell" data-title="Full Name">
                 <?php echo $user->fn." ".$user->ln; ?>
             </div>
-            <div class="cell" data-title="Origin">
+            <div class="cell" data-title="DOB">
                 <?php echo $user->dob; ?>
             </div>
-            <div class="cell" data-title="Destination">
+            <div class="cell" data-title="Phone No.">
                 <?php echo $user->ph; ?>
             </div>
-            <div class="cell" data-title="Expected Delivery">
+            <div class="cell" data-title="Email">
                 <?php echo $user->email; ?>
             </div>
-            <div class="cell" data-title="Delivered On">
+            <div class="cell" data-title="Office">
                 <?php echo ((new Office($user->office))->name); ?>
             </div>
         </div>
@@ -173,16 +172,74 @@ if(isset($_GET['id'])&&$_GET['id']!=''&&$userstatus){
 else {
     ?>
     <div id="msgdiv"></div>
-    <div style="padding-top: 10%" class="row">
-        <div class="col-sm-4"></div>
-        <div class="col-sm-4">
-            <form onsubmit="if ($('#awb').val()==''){generate_message('msgdiv','info','Please Enter Shipment Number First!','msgid','','clear'); event.preventDefault();}" id="awbform" method="get">
+        <div style="padding-top:5%;padding-left:10%;padding-right:10%;" style="width: 100%;">
+            <form onsubmit="if ($('#id').val()==''){generate_message('msgdiv','info','Please Enter User ID First!','msgid','','clear'); event.preventDefault();}" id="awbform" method="get">
                 <div class="input-group">
                     <input class="form-control" name="id" id="id" placeholder="User ID" type="number">
                     <span onclick="if ($('#id').val()==''){generate_message('msgdiv','info','Please Enter User ID First!','msgid','','clear');} else document.getElementById('awbform').submit();"
                           class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
                 </div>
             </form>
+        </div><br>
+    <div class="wrapper">
+        <div class="table">
+
+            <div class="row header">
+                    <div class="cell">
+                        User ID
+                    </div>
+                    <div class="cell">
+                        Username
+                    </div>
+                    <div class="cell">
+                        Full Name
+                    </div>
+                    <div class="cell">
+                        DOB
+                    </div>
+                    <div class="cell">
+                        Phone No.
+                    </div>
+                    <div class="cell">
+                        Email
+                    </div>
+                    <div class="cell">
+                        Office
+                    </div>
+                    <div class="cell">
+                        Action
+                    </div>
+            </div>
+            <?php
+            foreach (Users::getUsers(null) as $userlist){
+                ?>
+                <div class="row">
+                    <div class="cell" data-title="User ID">
+                        <?php echo $userlist['enrlid']; ?>
+                    </div>
+                    <div class="cell" data-title="Username">
+                        <?php echo $userlist['id']; ?>
+                    </div>
+                    <div class="cell" data-title="Full Name">
+                        <?php echo $userlist['fn']." ".$userlist['ln']; ?>
+                    </div>
+                    <div class="cell" data-title="DOB">
+                        <?php echo $userlist['dob']; ?>
+                    </div>
+                    <div class="cell" data-title="Phone No.">
+                        <?php echo $userlist['ph']; ?>
+                    </div>
+                    <div class="cell" data-title="Email">
+                        <?php echo $userlist['email']; ?>
+                    </div>
+                    <div class="cell" data-title="Office">
+                        <?php echo $userlist['officeid']; ?>
+                    </div>
+                    <div class="cell" data-title="Action">
+                        <a href="reset_password.php?id=<?php echo $userlist['enrlid']; ?>">Reset</a> <a href="delete_user.php?id=<?php echo $userlist['enrlid']; ?>">Delete</a>
+                    </div>
+                </div>
+            <?php } ?>
         </div>
     </div>
     <script src="<?php echo DOMAIN . PATH; ?>/js/ajax.js"></script>

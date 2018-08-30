@@ -76,11 +76,14 @@ class DB
     function askdb_all($table,$params)//fetch data
     {
         $sql="SELECT * FROM ".$table." WHERE ";
+        if($params==null){$sql="SELECT * FROM ".$table;}
+        else{
         $length=count($params);
         foreach ($params as $key => $value){
             $sql=$sql.$key."='".$value."'";
             if ($length!=1){$sql=$sql." AND ";}
             $length--;
+        }
         }
         $query = mysqli_query($this->connect,$sql) or die(mysql_error($this->connect));
         return mysqli_fetch_all($query,MYSQLI_ASSOC);

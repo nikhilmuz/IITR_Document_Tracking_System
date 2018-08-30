@@ -143,31 +143,33 @@ if(isset($_GET['id'])&&$_GET['id']!=''&&$userstatus){
         </div>
 
         <div class="row">
-            <div class="cell" data-title="Shipment No.">
+            <div class="cell" data-title="User ID">
                 <?php echo $user->enrlid; ?>
             </div>
-            <div class="cell" data-title="Created On">
+            <div class="cell" data-title="Username">
                 <?php echo $user->id; ?>
             </div>
-            <div class="cell" data-title="Created By">
+            <div class="cell" data-title="Full Name">
                 <?php echo $user->fn." ".$user->ln; ?>
             </div>
-            <div class="cell" data-title="Origin">
+            <div class="cell" data-title="DOB">
                 <?php echo $user->dob; ?>
             </div>
-            <div class="cell" data-title="Destination">
+            <div class="cell" data-title="Phone No.">
                 <?php echo $user->ph; ?>
             </div>
-            <div class="cell" data-title="Expected Delivery">
+            <div class="cell" data-title="Email">
                 <?php echo $user->email; ?>
             </div>
-            <div class="cell" data-title="Delivered On">
+            <div class="cell" data-title="Office">
                 <?php echo ((new Office($user->office))->name); ?>
             </div>
         </div>
     </div>
     <br>
-    <p align="center"><button onClick="window.location='reset_password.php?id=<?php echo $user->enrlid;?>'" class="btn btn-info">Reset Password</button> <button onClick="window.location='delete_user.php?id=<?php echo $user->enrlid;?>'" class="btn btn-danger">Delete User</button></p>
+    <p style="color: #FF0000;" align="center">Are you sure you want to delete above user?</p>
+    <br>
+    <p align="center"><button onClick="window.location='delete_user.php?id=<?php echo $user->enrlid;?>'" class="btn btn-danger">Delete User</button> <button onClick="window.location='delete_user.php'" class="btn btn-info">Go Back</button></p>
     <?php
 }
 else {
@@ -176,7 +178,7 @@ else {
     <div style="padding-top: 10%" class="row">
         <div class="col-sm-4"></div>
         <div class="col-sm-4">
-            <form onsubmit="if ($('#awb').val()==''){generate_message('msgdiv','info','Please Enter Shipment Number First!','msgid','','clear'); event.preventDefault();}" id="awbform" method="get">
+            <form onsubmit="if ($('#id').val()==''){generate_message('msgdiv','info','Please Enter User ID First!','msgid','','clear'); event.preventDefault();}" id="awbform" method="get">
                 <div class="input-group">
                     <input class="form-control" name="id" id="id" placeholder="User ID" type="number">
                     <span onclick="if ($('#id').val()==''){generate_message('msgdiv','info','Please Enter User ID First!','msgid','','clear');} else document.getElementById('awbform').submit();"
