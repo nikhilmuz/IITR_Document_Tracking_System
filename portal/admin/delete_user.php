@@ -12,6 +12,8 @@ if(isset($_GET['id'])&&$_GET['id']!="") {
         $("#tab4").addClass("active");
         $("title").html("Delete User | <?php echo TITLE; ?>");
     </script>
+    <script src="<?php echo DOMAIN . PATH; ?>/js/ajax.js"></script>
+    <script src="<?php echo DOMAIN . PATH; ?>/js/msg.js"></script>
     <style>
         input[type=number]::-webkit-inner-spin-button,
         input[type=number]::-webkit-outer-spin-button {
@@ -167,9 +169,33 @@ if(isset($_GET['id'])&&$_GET['id']!=''&&$userstatus){
         </div>
     </div>
     <br>
+    <div id="msgdiv"></div>
     <p style="color: #FF0000;" align="center">Are you sure you want to delete above user?</p>
     <br>
-    <p align="center"><button onClick="window.location='delete_user.php?id=<?php echo $user->enrlid;?>'" class="btn btn-danger">Delete User</button> <button onClick="window.location='delete_user.php'" class="btn btn-info">Go Back</button></p>
+    <p align="center"><button id="delete" onClick="delete_user();" class="btn btn-danger">Delete User</button> <button onClick="window.location='delete_user.php'" class="btn btn-info">Go Back</button></p>
+    <script>
+        function delete_user(){
+                $("#delete").attr("value","Deleting...");
+                document.getElementById("delete").disabled = "true";
+                send_ajax('../api/delete_user.php','id=<?php echo $user->enrlid;?>','ajax_callback1');
+        };
+        function ajax_callback1(text,status,state){
+            if(status==200&&state==4){
+                if(text=="0"){generate_message('msgdiv','danger','Unauthorized!','msgid','','clear');}
+                else {
+                    generate_message('msgdiv','success','User Deleted Successfully!','msgid','','clear');
+                    window.location="delete_user.php";
+                }
+            }
+            else if(status!=200&&state==4){
+                alert('Oops! There is a problem communicating with our servers.');
+            }
+            if(state==4){
+                $("#delete").attr("value","Delete User");
+                $("#delete").removeAttr("disabled");
+            }
+        };
+    </script>
     <?php
 }
 else {
@@ -187,8 +213,6 @@ else {
             </form>
         </div>
     </div>
-    <script src="<?php echo DOMAIN . PATH; ?>/js/ajax.js"></script>
-    <script src="<?php echo DOMAIN . PATH; ?>/js/msg.js"></script>
     <script>
         if (<?php echo !$userstatus; ?>) {
             generate_message('msgdiv', 'danger', 'Incorrect User ID! Try Again', 'msgid', '', 'clear');
