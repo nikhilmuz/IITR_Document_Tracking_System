@@ -234,11 +234,42 @@ else {
     <div style="padding-top: 10%" class="row">
         <div class="col-sm-4"></div>
         <div class="col-sm-4">
-            <form onsubmit="if ($('#awb').val()==''){generate_message('msgdiv','info','Please Enter Shipment Number First!','msgid','','clear'); event.preventDefault();}" id="awbform" method="get">
+            <form onsubmit="if ($('#fn').val()==''){generate_message('msgdiv','info','Please Enter Shipment Number First!','msgid','','clear'); event.preventDefault();}" id="userform" method="get">
                 <div class="input-group">
-                    <input class="form-control" name="awb" id="awb" placeholder="Shipment Number" type="number">
-                    <span onclick="if ($('#awb').val()==''){generate_message('msgdiv','info','Please Enter Shipment Number First!','msgid','','clear');} else document.getElementById('awbform').submit();"
-                          class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                    <span class="input-group-addon field"><strong>First Name</strong></span>
+                    <input class="form-control" name="fn" type="text" placeholder="e.g. John" required="">
+                </div>
+                <br>
+                <div class="input-group">
+                    <span class="input-group-addon field"><strong>Last Name</strong></span>
+                    <input class="form-control" name="ln" type="text" placeholder="e.g. Smith">
+                </div>
+                <br>
+                <div class="input-group">
+                    <span class="input-group-addon field"><strong>Username</strong></span>
+                    <input id="trigger" onkeyup="" class="form-control" name="id" type="text" placeholder="e.g. jsmith123" required="">
+                    <span id="idicon" class="glyphicon form-control-feedback"></span>
+                </div>
+                <br>
+                <div class="input-group">
+                    <span class="input-group-addon field"><strong>Date of Birth</strong></span>
+                    <input id="dob" class="form-control hasDatepicker" name="dob" placeholder="yyyy-mm-dd" type="text" required readonly>
+                </div>
+                <br>
+                <div id="phdiv" class="input-group">
+                    <span class="input-group-addon field"><strong>Mobile No.</strong></span>
+                    <span class="input-group-addon"><strong>+91</strong></span>
+                    <input class="form-control" id="ph" name="ph" type="text" placeholder="e.g. 9934099340" required="">
+                </div>
+                <br>
+                <div class="input-group">
+                    <span class="input-group-addon field"><strong>Email</strong></span>
+                    <input class="form-control" name="email" type="email" placeholder="e.g. jsmith@example.com" required="">
+                </div>
+                <br>
+                <div class="input-group">
+                    <span class="input-group-addon field"><strong>Office ID</strong></span>
+                    <input name="enrlid" type="text" required="" class="form-control" placeholder="e.g. 1">
                 </div>
             </form>
         </div>
@@ -246,9 +277,12 @@ else {
     <script src="<?php echo DOMAIN . PATH; ?>/js/ajax.js"></script>
     <script src="<?php echo DOMAIN . PATH; ?>/js/msg.js"></script>
     <script>
-        if (<?php echo !$awbstatus; ?>) {
+        $(function() {
+            $( "#dob" ).datepicker().datepicker( "option", "dateFormat", "yy-mm-dd" ).datepicker( "option", "changeMonth", "true" ).datepicker( "option", "changeYear", "true" ).datepicker("option","yearRange", "1980:-15");
+        });
+        if (<?php if($awbstatus) echo "false"; else echo "true"; ?>) {
             generate_message('msgdiv', 'danger', 'Incorrect Shipment Number! Try Again', 'msgid', '', 'clear');
-        }
+        };
     </script>
     <?php
 }

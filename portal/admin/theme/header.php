@@ -18,7 +18,7 @@ header('Location: '.DOMAIN.PATH.ADMIN.'/login.php?msg=3');
       <!--JQuery UI End-->
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width">
-<title>IITR Logistics</title>
+<title><?php echo TITLE; ?></title>
 </HEAD>
 <BODY>
 	<div class="page-header">

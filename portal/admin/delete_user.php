@@ -214,7 +214,7 @@ else {
         </div>
     </div>
     <script>
-        if (<?php echo !$userstatus; ?>) {
+        if (<?php if($userstatus) echo "false"; else echo "true"; ?>) {
             generate_message('msgdiv', 'danger', 'Incorrect User ID! Try Again', 'msgid', '', 'clear');
         }
     </script>
