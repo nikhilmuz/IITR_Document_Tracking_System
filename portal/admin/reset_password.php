@@ -12,6 +12,9 @@ if(isset($_GET['id'])&&$_GET['id']!="") {
         $("#tab2").addClass("active");
         $("title").html("Reset Password | <?php echo TITLE; ?>");
     </script>
+    <script src="<?php echo DOMAIN . PATH; ?>/js/ajax.js"></script>
+    <script src="<?php echo DOMAIN . PATH; ?>/js/msg.js"></script>
+    <script src="<?php echo DOMAIN . PATH; ?>/js/hash.js"></script>
     <style>
         input[type=number]::-webkit-inner-spin-button,
         input[type=number]::-webkit-outer-spin-button {
@@ -166,8 +169,50 @@ if(isset($_GET['id'])&&$_GET['id']!=''&&$userstatus){
             </div>
         </div>
     </div>
+    <div id="msgdiv"></div>
     <br>
-    <p align="center"><button onClick="window.location='reset_password.php?id=<?php echo $user->enrlid;?>'" class="btn btn-warning">Reset Password</button> <button onClick="window.location='reset_password.php'" class="btn btn-info">Go Back</button></p>
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4" align="center">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
+            <input class="form-control" name="newpwd" id="newpwd" type="password" placeholder="New Password">
+        </div>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-check"></i></span>
+            <input class="form-control" name="cpwd" id="cpwd" type="password" placeholder="Confirm Password">
+        </div>
+        <br>
+        <p align="center"><button id="reset" onClick="change_password(<?php echo $user->enrlid;?>,$('#newpwd').val(),$('#cpwd').val());" class="btn btn-warning">Reset Password</button> <button onClick="window.location='reset_password.php'" class="btn btn-info">Go Back</button></p>
+    </div>
+
+    <script>
+        function change_password(id,newpwd,cpwd){
+            if(newpwd==""||cpwd==""){generate_message('msgdiv','warning',"Please enter password first!",'msgid','','clear');}
+            else if(newpwd==cpwd){
+                $("#reset").attr("value","Submitting...");
+                document.getElementById("reset").disabled = "true";
+                send_ajax('../api/reset_password.php','id='+id+'&newpwd='+sha256_digest($('#newpwd').val()),'ajax_callback1');
+            }
+            else {generate_message('msgdiv','warning',"Passwords doesn't match!",'msgid','','clear');}
+        };
+        function ajax_callback1(text,status,state){
+            if(status==200&&state==4){
+                if(text=="0"){generate_message('msgdiv','danger','Unauthorized!','msgid','','clear');}
+                else {
+                    generate_message('msgdiv','success','Password Changed Successfully!','msgid','','clear');
+                    window.location="reset_password.php";
+                }
+            }
+            else if(status!=200&&state==4){
+                alert('Oops! There is a problem communicating with our servers.');
+            }
+            if(state==4){
+                $("#reset").attr("value","Reset Password");
+                $("#reset").removeAttr("disabled");
+            }
+        };
+    </script>
     <?php
 }
 else {
@@ -185,8 +230,6 @@ else {
             </form>
         </div>
     </div>
-    <script src="<?php echo DOMAIN . PATH; ?>/js/ajax.js"></script>
-    <script src="<?php echo DOMAIN . PATH; ?>/js/msg.js"></script>
     <script>
         if (<?php echo !$userstatus; ?>) {
             generate_message('msgdiv', 'danger', 'Incorrect User ID! Try Again', 'msgid', '', 'clear');

@@ -233,7 +233,7 @@ else {
                         <?php echo $userlist['email']; ?>
                     </div>
                     <div class="cell" data-title="Office">
-                        <?php echo $userlist['officeid']; ?>
+                        <?php echo ((new Office($userlist['officeid']))->name); ?>
                     </div>
                     <div class="cell" data-title="Action">
                         <a href="reset_password.php?id=<?php echo $userlist['enrlid']; ?>">Reset</a> <a href="delete_user.php?id=<?php echo $userlist['enrlid']; ?>">Delete</a>
