@@ -5,9 +5,10 @@
  * Date: 25/8/18
  * Time: 11:28 PM
  */
+define("OFFICE_TABLE_NAME","office");
 class Office
 {
-    private $office_table_name="office";
+    private $office_table_name=OFFICE_TABLE_NAME;
     public function __construct($officeid)
     {
         $dbServer = DB_HOST;
@@ -39,5 +40,8 @@ class Office
         }else{
             return false;
         }
+    }
+    static function getOffices(){
+        return (new DB())->askdb_all(OFFICE_TABLE_NAME,null);
     }
 }

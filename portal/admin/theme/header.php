@@ -1,7 +1,7 @@
 <?php
 require_once(dirname(dirname(dirname(__FILE__))).'/includes/autoload.php');
 if (!(new Sessions())->chk_tok()){
-header('Location: '.DOMAIN.PATH.ADMIN.'/login.php?msg=3');
+header('Location: '.DOMAIN.PATH .'/login.php?msg=3');
 }
 ?>
 <!DOCTYPE html>
@@ -13,7 +13,7 @@ header('Location: '.DOMAIN.PATH.ADMIN.'/login.php?msg=3');
 
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
       <!--JQuery UI Start-->
-      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+      <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
       <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
       <!--JQuery UI End-->
       <meta charset="utf-8">

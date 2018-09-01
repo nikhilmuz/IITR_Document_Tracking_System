@@ -54,4 +54,12 @@ class Users
     static function getUsers($array){
         return (new DB())->askdb_all(USER_TABLE_NAME,$array);
     }
+    function checkUsername($username){
+        $query = mysqli_query($this->connect,"SELECT * FROM ".$this->user_table_name." WHERE id = '".strtoupper($username)."'") or die(mysql_error($this->connect));
+        if(mysqli_num_rows($query)>0){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
