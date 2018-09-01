@@ -4,7 +4,7 @@ $session=new Sessions();
 if (!$session->chk_tok()){
 header('Location: '.DOMAIN.PATH .'/login.php?msg=3');
 }
-else if((new Users($session->getID()))->isAdmin){
+else if(!(new Users($session->getID()))->isAdmin){
 	die("Not an Admin!");
 }
 ?>
