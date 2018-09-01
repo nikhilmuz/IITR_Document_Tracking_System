@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: tbsdbinstance.ctlrgvtx2zlb.ap-south-1.rds.amazonaws.com
--- Generation Time: Sep 01, 2018 at 06:18 AM
+-- Generation Time: Sep 01, 2018 at 06:47 AM
 -- Server version: 5.7.17-log
 -- PHP Version: 7.2.7-0ubuntu0.18.04.2
 
@@ -21,6 +21,70 @@ SET time_zone = "+00:00";
 --
 -- Database: `iitr`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `awb_meta`
+--
+
+CREATE TABLE `awb_meta` (
+  `awb` int(11) NOT NULL,
+  `created` int(11) NOT NULL,
+  `created_by` int(11) NOT NULL,
+  `completed` int(11) NOT NULL,
+  `completed_by` int(11) NOT NULL,
+  `origin` text NOT NULL,
+  `destination` text NOT NULL,
+  `status` int(11) NOT NULL,
+  `docid` text NOT NULL,
+  `remarks` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `events`
+--
+
+CREATE TABLE `events` (
+  `timestamp` int(11) NOT NULL,
+  `awb` int(11) NOT NULL,
+  `owner` int(11) NOT NULL,
+  `office` int(11) NOT NULL,
+  `remarks` text NOT NULL,
+  `privacy` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `office`
+--
+
+CREATE TABLE `office` (
+  `officeid` int(11) NOT NULL,
+  `name` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `office`
+--
+
+INSERT INTO `office` (`officeid`, `name`) VALUES
+(1, 'Head Office');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sessions`
+--
+
+CREATE TABLE `sessions` (
+  `tid` int(10) NOT NULL,
+  `token` varchar(100) NOT NULL,
+  `eid` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -51,6 +115,32 @@ INSERT INTO `users` (`enrlid`, `id`, `pwd`, `fn`, `ln`, `dob`, `ph`, `email`, `o
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `awb_meta`
+--
+ALTER TABLE `awb_meta`
+  ADD PRIMARY KEY (`awb`);
+
+--
+-- Indexes for table `events`
+--
+ALTER TABLE `events`
+  ADD PRIMARY KEY (`timestamp`);
+
+--
+-- Indexes for table `office`
+--
+ALTER TABLE `office`
+  ADD PRIMARY KEY (`officeid`);
+
+--
+-- Indexes for table `sessions`
+--
+ALTER TABLE `sessions`
+  ADD PRIMARY KEY (`tid`),
+  ADD UNIQUE KEY `tid` (`tid`),
+  ADD KEY `tid_2` (`tid`);
 
 --
 -- Indexes for table `users`
