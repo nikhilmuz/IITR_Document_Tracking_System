@@ -1,6 +1,7 @@
 <?php
 require_once(dirname(dirname(dirname(__FILE__))).'/includes/autoload.php');
-if (!(new Sessions())->chk_tok()){
+$session=new Sessions();
+if (!$session->chk_tok()){
 header('Location: '.DOMAIN.PATH .'/login.php?msg=3');
 }
 else if((new Users($session->getID()))->isAdmin){
