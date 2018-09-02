@@ -44,7 +44,7 @@ get_admin_header();
                 <br>
                 <div class="input-group">
                     <span class="input-group-addon field"><strong>Date of Birth</strong></span>
-                    <input id="dob" class="form-control hasDatepicker" name="dob" placeholder="yyyy-mm-dd" type="date" required>
+                    <input id="dob" class="form-control hasDatepicker" name="dob" placeholder="yyyy-mm-dd" type="date">
                 </div>
                 <br>
                 <div id="phdiv" class="input-group">
@@ -84,7 +84,7 @@ get_admin_header();
             $( "#dob" ).datepicker().datepicker( "option", "dateFormat", "yy-mm-dd" ).datepicker( "option", "changeMonth", "true" ).datepicker( "option", "changeYear", "true" ).datepicker("option","yearRange", "1980:-15");
         });
         function createUser(fn,ln,un,dob,ph,email,office,pwd){
-            if(fn==""||un==""||dob==""||ph==""||email==""||office==""||pwd==""){
+            if(fn==""||un==""||ph==""||email==""||office==""||pwd==""){
                 generate_message('msgdiv', 'info', 'Please fill details completely first!', 'msgid', '', 'clear');
             }
             else {

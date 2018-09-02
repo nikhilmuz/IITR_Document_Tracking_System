@@ -8,7 +8,7 @@
 require_once(dirname(dirname(__FILE__)).'/includes/autoload.php');
 $user=new Users((new Sessions())->getID());
 if($user->isAdmin){
- if(isset($_POST['fn'])&&isset($_POST['ln'])&&isset($_POST['un'])&&isset($_POST['pwd'])&&isset($_POST['dob'])&&isset($_POST['ph'])&&isset($_POST['email'])&&isset($_POST['office'])&&$_POST['fn']!=""&&$_POST['un']!=""&&$_POST['pwd']!=""&&$_POST['dob']!=""&&$_POST['ph']!=""&&$_POST['email']!=""&&$_POST['office']!=""){
+ if(isset($_POST['fn'])&&isset($_POST['ln'])&&isset($_POST['un'])&&isset($_POST['pwd'])&&isset($_POST['dob'])&&isset($_POST['ph'])&&isset($_POST['email'])&&isset($_POST['office'])&&$_POST['fn']!=""&&$_POST['un']!=""&&$_POST['pwd']!=""&&$_POST['ph']!=""&&$_POST['email']!=""&&$_POST['office']!=""){
      if($user->checkUsername($_POST['un'])){
          echo 2;
      }
