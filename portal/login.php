@@ -43,6 +43,8 @@ else if (isset($_POST['id'])&&isset($_POST['password'])){
                         <br>
                         <input class="btn btn-primary" id="submit" type="submit" value="Log In">
                      </form>
+                            <br>
+                            Not registered? Contact Admin or <a href="/">track anonymously</a>
 				</div>
             </div>
             <div class="col-sm-4"></div>
