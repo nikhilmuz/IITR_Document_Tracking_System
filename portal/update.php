@@ -5,6 +5,9 @@ get_header();
 $awbstatus=true;
 if(isset($_GET['awb'])&&$_GET['awb']!="") {
     $awb = new AWB($_GET['awb']);
+    if(!$awb->isValid){
+        $awb=new AWB($awb->getAWBfromSAP($_GET['awb']));
+    }
     $awbstatus=$awb->isValid;
 }
 ?>
@@ -276,7 +279,7 @@ else {
         <div class="col-sm-4">
             <form onsubmit="if ($('#awb').val()==''){generate_message('msgdiv','info','Please Enter Shipment Number First!','msgid','','clear'); event.preventDefault();}" id="awbform" method="get">
                 <div class="input-group">
-                    <input class="form-control" name="awb" id="awb" placeholder="Shipment Number" type="number">
+                    <input class="form-control" name="awb" id="awb" placeholder="Shipment Number" type="text">
                     <span onclick="if ($('#awb').val()==''){generate_message('msgdiv','info','Please Enter Shipment Number First!','msgid','','clear');} else document.getElementById('awbform').submit();"
                           class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
                 </div>

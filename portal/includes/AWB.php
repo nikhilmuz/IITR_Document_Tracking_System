@@ -82,4 +82,14 @@ class AWB
         );
         $this->isValid=$this->isValid();
     }
+    function getAWBfromSAP($sap){
+        $query = mysqli_query($this->connect,"SELECT * FROM ".$this->meta_table_name." WHERE upper(docid) = '".strtoupper($sap)."'") or die(mysql_error($this->connect));
+        if(mysqli_num_rows($query)>0){
+            $result = mysqli_fetch_array($query);
+            return $result['awb'];
+        }else{
+            (new DB())->telldb($this->office_table_name,array("officeid","name"),array($this->officeid,$name));
+            return -1;
+        }
+    }
 }
