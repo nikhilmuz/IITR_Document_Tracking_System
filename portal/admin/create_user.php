@@ -79,7 +79,8 @@ get_admin_header();
         $(function() {
             $('#office').select2({
                 placeholder: 'Choose One',
-                width: '100%'
+                width: '100%',
+                tags: true
             });;
             $( "#dob" ).datepicker().datepicker( "option", "dateFormat", "yy-mm-dd" ).datepicker( "option", "changeMonth", "true" ).datepicker( "option", "changeYear", "true" ).datepicker("option","yearRange", "1980:-15");
         });

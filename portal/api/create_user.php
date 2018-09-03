@@ -13,6 +13,10 @@ if($user->isAdmin){
          echo 2;
      }
      else{
+         $office=$_POST['office'];
+         if(!(new Office($office))->isValid){
+             $office=(new Office(time()))->getIDbyName($office);
+         }
      (new DB())->telldb("users",array(
          'enrlid',
          'id',
@@ -34,7 +38,7 @@ if($user->isAdmin){
          $_POST['dob'],
          $_POST['ph'],
          $_POST['email'],
-         $_POST['office'],
+         $office,
          ""
      )
      );

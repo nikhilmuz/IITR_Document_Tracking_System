@@ -41,6 +41,16 @@ class Office
             return false;
         }
     }
+    function getIDbyName($name){
+        $query = mysqli_query($this->connect,"SELECT * FROM ".$this->office_table_name." WHERE upper(name) = '".strtoupper($name)."'") or die(mysql_error($this->connect));
+        if(mysqli_num_rows($query)>0){
+            $result = mysqli_fetch_array($query);
+            return $result['officeid'];
+        }else{
+            (new DB())->telldb($this->office_table_name,array("officeid","name"),array($this->officeid,$name));
+            return $this->officeid;
+        }
+    }
     static function getOffices(){
         return (new DB())->askdb_all(OFFICE_TABLE_NAME,null);
     }
