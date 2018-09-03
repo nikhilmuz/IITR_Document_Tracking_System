@@ -123,7 +123,7 @@ if(isset($_GET['awb'])&&$_GET['awb']!=''&&$awbstatus){
                 Shipment No.
             </div>
             <div class="cell">
-                Document ID
+                SAP ID
             </div>
             <div class="cell">
                 Created On
@@ -158,7 +158,7 @@ if(isset($_GET['awb'])&&$_GET['awb']!=''&&$awbstatus){
             <div class="cell" data-title="Shipment No.">
                 <?php echo $awb->awb; ?>
             </div>
-            <div class="cell" data-title="Shipment No.">
+            <div class="cell" data-title="SAP ID">
                 <?php echo $awb->docid; ?>
             </div>
             <div class="cell" data-title="Created On">

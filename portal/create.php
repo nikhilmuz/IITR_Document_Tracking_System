@@ -125,7 +125,7 @@ if($awbstatus){
                 Shipment No.
             </div>
             <div class="cell">
-                Document ID.
+                SAP ID.
             </div>
             <div class="cell">
                 Created On
@@ -160,7 +160,7 @@ if($awbstatus){
             <div class="cell" data-title="Shipment No.">
                 <?php echo $awb->awb; ?>
             </div>
-            <div class="cell" data-title="Document ID">
+            <div class="cell" data-title="SAP ID">
                 <?php echo $awb->docid; ?>
             </div>
             <div class="cell" data-title="Created On">
@@ -260,7 +260,7 @@ else {
                 </div>
                 <br>
                 <div class="input-group">
-                    <input class="form-control" name="docid" id="docid" placeholder="Document ID" type="text">
+                    <input class="form-control" name="docid" id="docid" placeholder="SAP ID" type="text">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-paperclip"></i></span>
                 </div>
                 <br>

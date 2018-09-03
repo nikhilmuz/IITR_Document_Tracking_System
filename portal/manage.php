@@ -116,7 +116,7 @@ get_header();
                 Shipment No.
             </div>
             <div class="cell">
-                Document ID
+                SAP ID
             </div>
             <div class="cell">
                 Created On
@@ -153,7 +153,7 @@ get_header();
             <div class="cell" data-title="Shipment No.">
                 <?php echo $shipment['awb']; ?>
             </div>
-            <div class="cell" data-title="Document ID">
+            <div class="cell" data-title="SAP ID">
                 <?php echo $shipment['docid']; ?>
             </div>
             <div class="cell" data-title="Created On">
