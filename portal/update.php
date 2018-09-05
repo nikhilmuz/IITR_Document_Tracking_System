@@ -212,9 +212,9 @@ if(isset($_GET['awb'])&&$_GET['awb']!=''&&$awbstatus){
             <span class="input-group-addon field"><strong>Remarks</strong></span>
             <select class="form-control" name="remarks" id="remarks">
                 <option selected="selected" value="">Choose One</option>
-                <option value="Received">Received</option>
+                <option value="Received from">Received from</option>
                 <option value="Processing">Processing</option>
-                <option value="Dispatched">Dispatched</option>
+                <option value="Dispatched to">Dispatched to</option>
                 <option value="Delivered">Delivered</option>
                 <option value="Others">Others</option>
             </select>
