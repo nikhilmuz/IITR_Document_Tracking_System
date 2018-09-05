@@ -215,7 +215,6 @@ if(isset($_GET['awb'])&&$_GET['awb']!=''&&$awbstatus){
                 <option value="Received from">Received from</option>
                 <option value="Processing">Processing</option>
                 <option value="Dispatched to">Dispatched to</option>
-                <option value="Delivered">Delivered</option>
                 <option value="Payment Made">Payment Made</option>
                 <option value="Others">Others</option>
             </select>
@@ -229,12 +228,14 @@ if(isset($_GET['awb'])&&$_GET['awb']!=''&&$awbstatus){
     <p align="center"><button id="proceed" onClick="submit();" class="btn btn-info">Proceed</button> <button onClick="window.location='update.php';" class="btn btn-warning">Cancel</button></p>
     <script>
         function submit(){
-            if($('select').val()==""||($('select').val()=="Others"&&$('#oth').val()=="")){
+            if($('select').val()==""||(($('select').val()=="Others"||$('select').val()=="Received from"||$('select').val()=="Dispatched to")&&$('#oth').val()=="")){
         generate_message('msgdiv', 'info', 'Fill the details completely!', 'msgid', '', 'clear');
             }
             else{
                 var remarks=$('select').val();
                 if(remarks=="Others"){remarks=$('#oth').val();}
+                else if(remarks=="Received from"){remarks="Received from"+$('#oth').val();}
+                else if(remarks=="Dispatched to"){remarks="Dispatched to"+$('#oth').val();}
                 $("#proceed").html("Submitting...");
                 document.getElementById("proceed").disabled = "true";
                 send_ajax('api/update.php',"privacy="+$('input[name=privacy]:checked').val()+"&remarks="+remarks+"&awb=<?php echo $awb->awb; ?>",'ajax_callback1');
