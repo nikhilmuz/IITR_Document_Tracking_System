@@ -10,5 +10,5 @@ define("DB_HOST", "sql.nikhilkumar.ga");
 define("DB_PORT", "3306");
 define("DB_LOGIN", "iitr");
 define("DB_PASS", "password");
-define("TITLE", "IITR Document Tracking System");
+define("TITLE", "IITR File/Invoice tracking system");
 define("ADMIN","/admin");
