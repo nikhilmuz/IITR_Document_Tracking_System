@@ -216,6 +216,7 @@ if(isset($_GET['awb'])&&$_GET['awb']!=''&&$awbstatus){
                 <option value="Processing">Processing</option>
                 <option value="Dispatched to">Dispatched to</option>
                 <option value="Delivered">Delivered</option>
+                <option value="Payment made">Payment made</option>
                 <option value="Others">Others</option>
             </select>
         </div>
