@@ -263,7 +263,7 @@ if(isset($_GET['awb'])&&$_GET['awb']!=''&&$awbstatus){
         };
         $("#others").css("visibility","hidden");
         $('select').on('change', function() {
-            if( this.value=="Others"){
+            if( this.value=="Others"||this.value=="Received from"||this.value=="Dispatched to"){
                 $("#others").css("visibility","visible");
             }
             else{
