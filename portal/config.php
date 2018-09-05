@@ -1,6 +1,6 @@
 <?php
 //define("DOMAIN", "http://localhost:8080");
-define("DOMAIN", "http://iitr.nikhilkumar.ga");
+define("DOMAIN", "http://tracking.iitr.ac.in");
 define("PATH", "/portal");
 define("PATH_APP", "/app");
 define("KB", DOMAIN.PATH."/kb");
