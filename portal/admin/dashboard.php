@@ -211,7 +211,9 @@ else {
                     </div>
             </div>
             <?php
+            $current_eid=(new Sessions())->getID();
             foreach (Users::getUsers(null) as $userlist){
+                if ($userlist['enrlid']==$current_eid){continue;}
                 ?>
                 <div class="row">
                     <div class="cell" data-title="User ID">
