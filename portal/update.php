@@ -234,8 +234,8 @@ if(isset($_GET['awb'])&&$_GET['awb']!=''&&$awbstatus){
             else{
                 var remarks=$('select').val();
                 if(remarks=="Others"){remarks=$('#oth').val();}
-                else if(remarks=="Received from"){remarks="Received from"+$('#oth').val();}
-                else if(remarks=="Dispatched to"){remarks="Dispatched to"+$('#oth').val();}
+                else if(remarks=="Received from"){remarks="Received from "+$('#oth').val();}
+                else if(remarks=="Dispatched to"){remarks="Dispatched to "+$('#oth').val();}
                 $("#proceed").html("Submitting...");
                 document.getElementById("proceed").disabled = "true";
                 send_ajax('api/update.php',"privacy="+$('input[name=privacy]:checked').val()+"&remarks="+remarks+"&awb=<?php echo $awb->awb; ?>",'ajax_callback1');
