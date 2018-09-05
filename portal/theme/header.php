@@ -42,7 +42,7 @@ header('Location: '.DOMAIN.PATH.'/login.php?msg=3');
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-        My Account
+        <?php echo (new Users((new Sessions())->getID()))->fn; ?>'s Account
         </a>
         <ul class="dropdown-menu">
           <li><a href="<?php echo DOMAIN.PATH; ?>/profile.php"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
