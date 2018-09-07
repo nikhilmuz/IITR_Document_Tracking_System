@@ -49,7 +49,7 @@ class Shipment
             return false;
         }
     }
-    public function addEvent($remarks,$privacy){
+    public function addEvent($remarks,$meta,$privacy){
         $id=(new Sessions())->getID();
         (new DB())->telldb(
             $this->events_table_name,
@@ -59,6 +59,7 @@ class Shipment
                 'owner',
                 'office',
                 'remarks',
+                'remarks_meta',
                 'privacy'
             ),
             array(
@@ -67,6 +68,7 @@ class Shipment
                 $id,
                 (new Users($id))->office,
                 $remarks,
+                $meta,
                 $privacy
             ));
     }

@@ -11,7 +11,7 @@ if ($shipment->status){
     echo 0;
     die();
 }
-$shipment->addEvent($_POST['remarks'],$_POST['privacy']);
+$shipment->addEvent($_POST['remarks'],$_POST['meta'],$_POST['privacy']);
 if ($_POST['remarks']=="Delivered"){
     $shipment->flagDelivered();
 }

@@ -233,12 +233,13 @@ if(isset($_GET['awb'])&&$_GET['awb']!=''&&$awbstatus){
             }
             else{
                 var remarks=$('select').val();
+                var meta="";
                 if(remarks=="Others"){remarks=$('#oth').val();}
-                else if(remarks=="Received from"){remarks="Received from "+$('#oth').val();}
-                else if(remarks=="Dispatched to"){remarks="Dispatched to "+$('#oth').val();}
+                else if(remarks=="Received from"){remarks="Received from"; meta = $('#oth').val();}
+                else if(remarks=="Dispatched to"){remarks="Dispatched to"; meta = $('#oth').val();}
                 $("#proceed").html("Submitting...");
                 document.getElementById("proceed").disabled = "true";
-                send_ajax('api/update.php',"privacy="+$('input[name=privacy]:checked').val()+"&remarks="+remarks+"&awb=<?php echo $awb->awb; ?>",'ajax_callback1');
+                send_ajax('api/update.php',"privacy="+$('input[name=privacy]:checked').val()+"&remarks="+remarks+"&meta="+meta+"&awb=<?php echo $awb->awb; ?>",'ajax_callback1');
             }
             }
         function ajax_callback1(text,status,state){
@@ -268,6 +269,7 @@ if(isset($_GET['awb'])&&$_GET['awb']!=''&&$awbstatus){
             }
             else{
                 $("#others").css("visibility","hidden");
+                $('#oth').val('');
             }
         });
     </script>

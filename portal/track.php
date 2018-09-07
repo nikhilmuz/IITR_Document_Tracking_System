@@ -211,6 +211,9 @@ if(isset($_GET['awb'])&&$_GET['awb']!=''&&$awbstatus){
                     Remarks
                 </div>
                 <div class="cell">
+                    Remarks Meta
+                </div>
+                <div class="cell">
                     Visibility
                 </div>
             </div>
@@ -228,7 +231,10 @@ if(isset($_GET['awb'])&&$_GET['awb']!=''&&$awbstatus){
                     <?php echo (new Office($event['office']))->name;?>
                 </div>
                 <div class="cell" data-title="Remarks">
-                    <?php echo $event['remarks'];?>
+                    <?php echo $event['remarks']; ?>
+                </div>
+                <div class="cell" data-title="Remarks Meta">
+                    <?php echo $event['remarks_meta']; ?>
                 </div>
                 <div class="cell" data-title="Visibility">
                     <?php if($event['privacy']==0){echo "Private";} else if($event['privacy']==1){echo "Public";}?>

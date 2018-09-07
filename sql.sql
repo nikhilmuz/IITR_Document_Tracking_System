@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: tbsdbinstance.ctlrgvtx2zlb.ap-south-1.rds.amazonaws.com
--- Generation Time: Sep 01, 2018 at 06:47 AM
+-- Generation Time: Sep 07, 2018 at 06:12 PM
 -- Server version: 5.7.17-log
 -- PHP Version: 7.2.7-0ubuntu0.18.04.2
 
@@ -53,6 +53,7 @@ CREATE TABLE `events` (
   `owner` int(11) NOT NULL,
   `office` int(11) NOT NULL,
   `remarks` text NOT NULL,
+  `remarks_meta` text NOT NULL,
   `privacy` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -66,13 +67,6 @@ CREATE TABLE `office` (
   `officeid` int(11) NOT NULL,
   `name` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `office`
---
-
-INSERT INTO `office` (`officeid`, `name`) VALUES
-(1, 'Head Office');
 
 -- --------------------------------------------------------
 
@@ -104,13 +98,6 @@ CREATE TABLE `users` (
   `officeid` int(11) NOT NULL,
   `permission` text COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`enrlid`, `id`, `pwd`, `fn`, `ln`, `dob`, `ph`, `email`, `officeid`, `permission`) VALUES
-('1', 'ADMIN', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'Nikhil', 'Kumar', '1999-09-14', '8002572171', 'admin@nikhilkumar.cf', 1, 'ADMIN');
 
 --
 -- Indexes for dumped tables
