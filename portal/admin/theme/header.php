@@ -42,6 +42,7 @@ else if(!(new Users($session->getID()))->isAdmin){
         <li id="tab2"><a href="<?php echo DOMAIN.PATH.ADMIN; ?>/reset_password.php">Reset Password</a></li>
         <li id="tab3"><a href="<?php echo DOMAIN.PATH.ADMIN; ?>/create_user.php">Create User</a></li>
         <li id="tab4"><a href="<?php echo DOMAIN.PATH.ADMIN; ?>/delete_user.php">Delete User</a></li>
+        <li id="tab5"><a href="<?php echo DOMAIN.PATH.ADMIN; ?>/delete_shipment.php">Delete Shipment</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
